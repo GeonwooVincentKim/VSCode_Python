@@ -14,3 +14,10 @@ import os
 def detect_and_predict_mask(frame, faceNet, maskNet):
     (h, w) = frame.shape[:2]
     blob = cv2.dnn.blobFromImage(frame, 1.0, (300, 300), (104.0, 177.0, 123.0))
+
+    faceNet.setInput(blob)
+    detections = faceNet.forward()
+
+    faces = []
+    locs = []
+    preds = []
